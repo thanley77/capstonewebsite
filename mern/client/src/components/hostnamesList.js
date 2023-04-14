@@ -57,9 +57,9 @@ export default function HostnameList() {
     return hostnames.map((hostnames) => {
       return (
         <Hostname
-          hostname={hostname}
-          deleteHostname={() => deleteHostname(hostname._id)}
-          key={hostname._id}
+          hostnames={hostnames}
+          deleteHostnames={() => deleteHostnames(hostnames._id)}
+          key={hostnames._id}
         />
       );
     });
