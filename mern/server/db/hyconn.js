@@ -1,6 +1,6 @@
 const { MongoClient } = require("mongodb");
-const Db = process.env.ATLAS_URI;
-const client = new MongoClient(Db, {
+const HyDb = process.env.ATLAS_URI;
+const client = new MongoClient(HyDb, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
