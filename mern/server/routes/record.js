@@ -1,20 +1,12 @@
 const express = require("express");
-
-// recordRoutes is an instance of the express router.
-// We use it to define our routes.
-// The router will be added as a middleware and will take control of requests starting with path /record.
 const recordRoutes = express.Router();
-
-// This will help us connect to the database
 const dbo = require("../db/conn");
-
-// This help convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
 
-
-// This section will help you get a list of all the records.
-recordRoutes.route("/record").get(function (req, res) {
-  let db_connect = dbo.getDb("records");
+// This section will help you get a list of all the records for a specific database.
+recordRoutes.route("/record/:db_name").get(function (req, res) {
+  let dbName = req.params.db_name;
+  let db_connect = dbo.getDb(dbName);
   db_connect
     .collection("records")
     .find({})
@@ -24,21 +16,23 @@ recordRoutes.route("/record").get(function (req, res) {
     });
 });
 
-// This section will help you get a single record by id
-recordRoutes.route("/record/:id").get(function (req, res) {
-  let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId( req.params.id )};
+// This section will help you get a single record by id for a specific database
+recordRoutes.route("/record/:db_name/:id").get(function (req, res) {
+  let dbName = req.params.db_name;
+  let db_connect = dbo.getDb(dbName);
+  let myquery = { _id: ObjectId(req.params.id) };
   db_connect
-      .collection("records")
-      .findOne(myquery, function (err, result) {
-        if (err) throw err;
-        res.json(result);
-      });
+    .collection("records")
+    .findOne(myquery, function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
 });
 
-// This section will help you create a new record.
-recordRoutes.route("/record/add").post(function (req, response) {
-  let db_connect = dbo.getDb();
+// This section will help you create a new record for a specific database.
+recordRoutes.route("/record/add/:db_name").post(function (req, response) {
+  let dbName = req.params.db_name;
+  let db_connect = dbo.getDb(dbName);
   let myobj = {
     name: req.body.name,
     position: req.body.position,
@@ -50,10 +44,11 @@ recordRoutes.route("/record/add").post(function (req, response) {
   });
 });
 
-// This section will help you update a record by id.
-recordRoutes.route("/update/:id").post(function (req, response) {
-  let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId( req.params.id )};
+// This section will help you update a record by id for a specific database.
+recordRoutes.route("/update/:db_name/:id").post(function (req, response) {
+  let dbName = req.params.db_name;
+  let db_connect = dbo.getDb(dbName);
+  let myquery = { _id: ObjectId(req.params.id) };
   let newvalues = {
     $set: {
       name: req.body.name,
@@ -70,10 +65,11 @@ recordRoutes.route("/update/:id").post(function (req, response) {
     });
 });
 
-// This section will help you delete a record
-recordRoutes.route("/:id").delete((req, response) => {
-  let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId( req.params.id )};
+// This section will help you delete a record for a specific database.
+recordRoutes.route("/:db_name/:id").delete((req, response) => {
+  let dbName = req.params.db_name;
+  let db_connect = dbo.getDb(dbName);
+  let myquery = { _id: ObjectId(req.params.id) };
   db_connect.collection("records").deleteOne(myquery, function (err, obj) {
     if (err) throw err;
     console.log("1 document deleted");
