@@ -16,7 +16,7 @@ const ObjectId = require("mongodb").ObjectId;
 recordRoutes.route("/record").get(function (req, res) {
   let db_connect = dbo.getDb("records");
   db_connect
-    .collection("httpx")
+    .collection("records")
     .find({})
     .toArray(function (err, result) {
       if (err) throw err;
