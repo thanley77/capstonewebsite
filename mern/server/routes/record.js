@@ -4,6 +4,42 @@ const dbo = require("../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
 // This section will help you get a list of all the records for a specific database.
+recordRoutes.route("/httpx/:db_name").get(function (req, res) {
+  let dbName = req.params.db_name;
+  let db_connect = dbo.getDb(dbName);
+  db_connect
+    .collection("httpx")
+    .find({})
+    .toArray(function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+});
+
+recordRoutes.route("/nmap/:db_name").get(function (req, res) {
+  let dbName = req.params.db_name;
+  let db_connect = dbo.getDb(dbName);
+  db_connect
+    .collection("nmap")
+    .find({})
+    .toArray(function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+});
+
+recordRoutes.route("/hosts/:db_name").get(function (req, res) {
+  let dbName = req.params.db_name;
+  let db_connect = dbo.getDb(dbName);
+  db_connect
+    .collection("hosts")
+    .find({})
+    .toArray(function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+});
+
 recordRoutes.route("/record/:db_name").get(function (req, res) {
   let dbName = req.params.db_name;
   let db_connect = dbo.getDb(dbName);
