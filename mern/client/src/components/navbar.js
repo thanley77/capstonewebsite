@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 
 export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
     // navigate to the search results page with the search query as a parameter
-    history.push(`/search?q=${searchQuery}`);
+    navigate(`/search?q=${searchQuery}`);
   };
 
   const handleSearchQueryChange = (event) => {
