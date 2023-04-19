@@ -9,8 +9,15 @@ export default function Navbar() {
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    // navigate to the search results page with the search query as a parameter
-    navigate(`/search?q=${searchQuery}`);
+    // attempt to navigate to the search query as a route and check if it exists
+    navigate(searchQuery).then((success) => {
+      if (success) {
+        navigate(searchQuery);
+      } else {
+        // redirect to a page indicating the search query was invalid
+        navigate(`/search?error=${searchQuery}`);
+      }
+    });
   };
 
   const handleSearchQueryChange = (event) => {
