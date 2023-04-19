@@ -9,12 +9,13 @@ export default function Navbar() {
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    // attempt to navigate to the search query as a route and check if it exists
-    navigate(searchQuery).then((success) => {
+    // Remove the "/search?q=" prefix from the search query and attempt to navigate to it as a route
+    const cleanedQuery = searchQuery.replace("/search?q=", "");
+    navigate(cleanedQuery).then((success) => {
       if (success) {
-        navigate(searchQuery);
+        navigate(cleanedQuery);
       } else {
-        // redirect to a page indicating the search query was invalid
+        // Redirect to a page indicating the search query was invalid
         navigate(`/search?error=${searchQuery}`);
       }
     });
