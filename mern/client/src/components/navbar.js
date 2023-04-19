@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { NavLink, useHistory } from "react-router";
+import { useHistory } from "react-router";
+import { NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 
 export default function Navbar() {
