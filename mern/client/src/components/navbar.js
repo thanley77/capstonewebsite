@@ -1,8 +1,21 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 
 export default function Navbar() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const history = useHistory();
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    // navigate to the search results page with the search query as a parameter
+    history.push(`/search?q=${searchQuery}`);
+  };
+
+  const handleSearchQueryChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -44,18 +57,19 @@ export default function Navbar() {
               </NavLink>
             </li>
             {/* Add more links as needed */}
+
+            {/* Search bar */}
             <li className="nav-item">
-              <form className="form-inline my-2 my-lg-0">
+              <form className="form-inline my-2 my-lg-0" onSubmit={handleSearchSubmit}>
                 <input
                   className="form-control mr-sm-2"
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
+                  value={searchQuery}
+                  onChange={handleSearchQueryChange}
                 />
-                <button
-                  className="btn btn-outline-success my-2 my-sm-0"
-                  type="submit"
-                >
+                <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
                   Search
                 </button>
               </form>
