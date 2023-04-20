@@ -25,9 +25,11 @@ export default function HttpxList() {
         window.alert(message);
         return;
       }
+
       const httpxList = await response.json();
       setHttpxList(httpxList);
     }
+
     getHttpxList();
 
     return;
