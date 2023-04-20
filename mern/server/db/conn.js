@@ -7,19 +7,25 @@ const client = new MongoClient(DbUrl, {
 
 const dbs = {};
 
-module.exports = {
-  connectToServer: function (dbName, callback) {
-    client.connect(function (err, db) {
-      // Verify we got a good "db" object
-      if (db) {
-        const database = db.db(dbName);
-        dbs[dbName] = database;
-        console.log(`Successfully connected to MongoDB database '${dbName}'.`);
-      }
-      return callback(err);
-    });
-  },
+// List of database names to connect to
+const dbNames = ["pentests_hyatt", "pentests_ninjakiwi"];
 
+// Connect to all databases
+client.connect(function (err, db) {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  
+  // For each database name, store the corresponding database object in the dbs object
+  dbNames.forEach(function(dbName) {
+    const database = db.db(dbName);
+    dbs[dbName] = database;
+    console.log(`Successfully connected to MongoDB database '${dbName}'.`);
+  });
+});
+
+module.exports = {
   getDb: function (dbName) {
     return dbs[dbName];
   },
