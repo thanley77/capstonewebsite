@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
 const Httpx = (props) => (
   <tr>
     <td>{props.httpx.input}</td>
@@ -16,27 +14,24 @@ const Httpx = (props) => (
 );
 
 export default function HttpxList() {
-  const { db_name } = useParams();
   const [httpxList, setHttpxList] = useState([]);
 
   useEffect(() => {
     async function getHttpxList() {
-      const response = await fetch(`/pentests_${db_name}/httpx`);
+      const response = await fetch(`/pentests_hyatt/httpx`);
 
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
         window.alert(message);
         return;
       }
-
       const httpxList = await response.json();
       setHttpxList(httpxList);
     }
-
     getHttpxList();
 
     return;
-  }, [db_name]);
+  }, [httpxList.length]);
 
   function httpxListTable() {
     return httpxList.map((httpx) => {
@@ -51,7 +46,7 @@ export default function HttpxList() {
 
   return (
     <div>
-      <h3>HTTPX List for {db_name}</h3>
+      <h3>HTTPX List</h3>
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
           <tr>
