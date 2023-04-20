@@ -6,10 +6,10 @@ const port = process.env.PORT || 5000;
 const conn = require("./db/conn");
 
 // Connect to multiple databases
-conn.connectToServer("database1", function (err) {
+conn.connectToServer("pentests_hyatt", function (err) {
   if (err) throw err;
 });
-conn.connectToServer("database2", function (err) {
+conn.connectToServer("pentests_ninjakiwi", function (err) {
   if (err) throw err;
 });
 
