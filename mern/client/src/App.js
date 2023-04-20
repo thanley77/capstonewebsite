@@ -18,6 +18,7 @@ const App = () => {
         <Route exact path="/" element={<RecordList />} />
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/list" element={<Create />} />
+        <Route path="/hyatt_httpx" element={<HttpxList />} />
       </Routes>
       </div>
     </div>
