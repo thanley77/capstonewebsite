@@ -15,12 +15,12 @@ const App = () => {
     <div>
       <Navbar />
       <div style={{ margin: 20 }}>
-      <Routes>
-        <Route exact path="/" element={<RecordList />} />
-        <Route path="/edit/:id" element={<Edit />} />
-        <Route path="/list" element={<Create />} />
-        <Route path="/hyatt_httpx" element={<HttpxList />} />
-      </Routes>
+        <Routes>
+          <Route exact path="/" element={<RecordList />} />
+          <Route path="/edit/:id" element={<Edit />} />
+          <Route path="/list" element={<Create />} />
+          <Route path="/:db_name/httpx" element={<HttpxList />} />
+        </Routes>
       </div>
     </div>
   );
