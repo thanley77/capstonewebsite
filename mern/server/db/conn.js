@@ -1,32 +1,26 @@
 const { MongoClient } = require("mongodb");
-const DbUrl = process.env.ATLAS_URI;
-const client = new MongoClient(DbUrl, {
+const Db = process.env.ATLAS_URI;
+const client = new MongoClient(Db, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
-const dbs = {};
-
-// List of database names to connect to
-const dbNames = ["pentests_hyatt", "pentests_ninjakiwi"];
-
-// Connect to all databases
-client.connect(function (err, db) {
-  if (err) {
-    console.error(err);
-    return;
-  }
-  
-  // For each database name, store the corresponding database object in the dbs object
-  dbNames.forEach(function(dbName) {
-    const database = db.db(dbName);
-    dbs[dbName] = database;
-    console.log(`Successfully connected to MongoDB database '${dbName}'.`);
-  });
-});
+var _db;
 
 module.exports = {
-  getDb: function (dbName) {
-    return dbs[dbName];
+  connectToServer: function (callback) {
+    client.connect(function (err, db) {
+      // Verify we got a good "db" object
+      if (db)
+      {
+        _db = db.db("pentests_ninjakiwi");
+        console.log("Successfully connected to MongoDB."); 
+      }
+      return callback(err);
+         });
+  },
+
+  getDb: function () {
+    return _db;
   },
 };
