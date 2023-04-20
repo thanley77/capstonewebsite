@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 const Httpx = (props) => (
   <tr>
+    <td>{props.httpx.input}</td>
     <td>{props.httpx.host}</td>
+    <td>{props.httpx.scheme}</td>
+    <td>{props.httpx.webserver}</td>
     <td>{props.httpx.path}</td>
     <td>{props.httpx.status_code}</td>
     <td>
@@ -49,7 +52,10 @@ export default function HttpxList() {
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
           <tr>
+            <th>Domain</th>
             <th>Host</th>
+            <th>Scheme</th>
+            <th>Webserver</th>
             <th>Path</th>
             <th>Status Code</th>
             <th>Action</th>
