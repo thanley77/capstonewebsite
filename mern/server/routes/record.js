@@ -8,7 +8,7 @@ recordRoutes.route("/:db_name/httpx").get(function (req, res) {
   dbo.connectToServer(dbName, function (err) {
     if (err) throw err;
 
-    let db_connect = dbo.getDb(dbName);
+    let db_connect = dbo.getDb();
     db_connect
       .collection("httpx")
       .find({})
@@ -19,17 +19,21 @@ recordRoutes.route("/:db_name/httpx").get(function (req, res) {
   });
 });
 
-// Get all nmap records for a specific database
 recordRoutes.route("/:db_name/nmap").get(function (req, res) {
   let dbName = req.params.db_name;
-  let db_connect = dbo.getDb(dbName);
-  db_connect
-    .collection("nmap")
-    .find({})
-    .toArray(function (err, result) {
-      if (err) throw err;
-      res.json(result);
-    });
+  dbo.connectToServer(dbName, function (err) {
+    if (err) throw err;
+
+    let db_connect = dbo.getDb();
+    db_connect
+      .collection("nmap")
+      .find({})
+      .toArray(function (err, result) {
+        if (err) throw err;
+        res.json(result);
+      });
+  });
 });
+
 
 module.exports = recordRoutes;
