@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom';
+
 const Httpx = (props) => (
   <tr>
     <td>{props.httpx.input}</td>
@@ -16,11 +18,12 @@ const Httpx = (props) => (
 );
 
 export default function HttpxList() {
+  const { db_name } = useParams();
   const [httpxList, setHttpxList] = useState([]);
 
   useEffect(() => {
     async function getHttpxList() {
-      const response = await fetch(`/:dbname/httpx`);
+      const response = await fetch(`/${db_name}/httpx`);
 
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
@@ -33,9 +36,7 @@ export default function HttpxList() {
     }
 
     getHttpxList();
-
-    return;
-  }, [httpxList.length]);
+  }, [db_name]);
 
   function httpxListTable() {
     return httpxList.map((httpx) => {
