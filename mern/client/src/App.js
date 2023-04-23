@@ -17,10 +17,10 @@ const App = () => {
       <Navbar />
       <div style={{ margin: 20 }}>
         <Routes>
-          <Route exact path="/" element={<RecordList />} />
+          <Route exact path="/chanethisback" element={<RecordList />} />
           <Route path="/edit/:id" element={<Edit />} />
           <Route path="/list" element={<Create />} />
-          <Route path="/:db_name/httpx" element={<HttpxList />} />
+          <Route path="/" element={<HttpxList />} />
         </Routes>
       </div>
     </div>
