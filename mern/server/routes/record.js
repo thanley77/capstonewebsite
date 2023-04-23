@@ -5,8 +5,7 @@ const ObjectId = require("mongodb").ObjectId;
 
 // This section will help you get a list of all the records for a specific database.
 recordRoutes.route("/:db_name/httpx").get(function (req, res) {
-  let dbName = req.params.db_name;
-  let db_connect = dbo.getDb(dbName);
+  let db_connect = dbo.getDb("pentests_hyatt");
   db_connect
     .collection("httpx")
     .find({})
