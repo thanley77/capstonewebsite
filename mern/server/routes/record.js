@@ -4,21 +4,19 @@ const dbo = require("../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
 // This section will help you get a list of all the records for a specific database.
-recordRoutes.route("/pentests_hyatt/httpx").get(function (req, res) {
+recordRoutes.route("/:db_name/httpx").get(function (req, res) {
   let dbName = req.params.db_name;
-  dbo.connectToServer(dbName, function (err) {
-    if (err) throw err;
-    let db_connect = dbo.getDb(dbName);
-    db_connect
-      .collection("httpx")
-      .find({})
-      .toArray(function (err, result) {
-        if (err) throw err;
-        res.json(result);
-      });
+  let db_connect = dbo.getDb(dbName);
+  db_connect
+    .collection("httpx")
+    .find({})
+    .toArray(function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
 });
 
-recordRoutes.route("/pentests_hyatt/nmap").get(function (req, res) {
+recordRoutes.route("/:db_name/nmap").get(function (req, res) {
   let dbName = req.params.db_name;
   let db_connect = dbo.getDb(dbName);
   db_connect
@@ -30,7 +28,7 @@ recordRoutes.route("/pentests_hyatt/nmap").get(function (req, res) {
     });
 });
 
-recordRoutes.route("/pentests_hyatt/hosts").get(function (req, res) {
+recordRoutes.route("/:db_name/hosts").get(function (req, res) {
   let dbName = req.params.db_name;
   let db_connect = dbo.getDb(dbName);
   db_connect
@@ -42,7 +40,7 @@ recordRoutes.route("/pentests_hyatt/hosts").get(function (req, res) {
     });
 });
 
-recordRoutes.route("/record/pentests_hyatt").get(function (req, res) {
+recordRoutes.route("/record/:db_name").get(function (req, res) {
   let dbName = req.params.db_name;
   let db_connect = dbo.getDb(dbName);
   db_connect
@@ -55,7 +53,7 @@ recordRoutes.route("/record/pentests_hyatt").get(function (req, res) {
 });
 
 // This section will help you get a single record by id for a specific database
-recordRoutes.route("/record/pentests_hyatt/:id").get(function (req, res) {
+recordRoutes.route("/record/:db_name/:id").get(function (req, res) {
   let dbName = req.params.db_name;
   let db_connect = dbo.getDb(dbName);
   let myquery = { _id: ObjectId(req.params.id) };
@@ -68,7 +66,7 @@ recordRoutes.route("/record/pentests_hyatt/:id").get(function (req, res) {
 });
 
 // This section will help you create a new record for a specific database.
-recordRoutes.route("/record/add/pentests_hyatt").post(function (req, response) {
+recordRoutes.route("/record/add/:db_name").post(function (req, response) {
   let dbName = req.params.db_name;
   let db_connect = dbo.getDb(dbName);
   let myobj = {
@@ -83,7 +81,7 @@ recordRoutes.route("/record/add/pentests_hyatt").post(function (req, response) {
 });
 
 // This section will help you update a record by id for a specific database.
-recordRoutes.route("/update/pentests_hyatt/:id").post(function (req, response) {
+recordRoutes.route("/update/:db_name/:id").post(function (req, response) {
   let dbName = req.params.db_name;
   let db_connect = dbo.getDb(dbName);
   let myquery = { _id: ObjectId(req.params.id) };
@@ -104,7 +102,7 @@ recordRoutes.route("/update/pentests_hyatt/:id").post(function (req, response) {
 });
 
 // This section will help you delete a record for a specific database.
-recordRoutes.route("/pentests_hyatt/:id").delete((req, response) => {
+recordRoutes.route("/:db_name/:id").delete((req, response) => {
   let dbName = req.params.db_name;
   let db_connect = dbo.getDb(dbName);
   let myquery = { _id: ObjectId(req.params.id) };
