@@ -1,7 +1,39 @@
+import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 
-const NmapList = () => {
+const Nmap = (props) => {
+  const { nmap } = props;
+  const { _id, scan } = nmap;
+
+  const portList = Object.keys(scan).map((port) => {
+    return (
+      <td key={port}>{port}</td>
+    );
+  });
+
+  const serviceList = Object.keys(scan).map((port) => {
+    return (
+      <td key={port}>{scan[port].Service}</td>
+    );
+  });
+
+  const stateList = Object.keys(scan).map((port) => {
+    return (
+      <td key={port}>{scan[port].State}</td>
+    );
+  });
+
+  return (
+    <tr>
+      <td>{_id}</td>
+      {portList}
+      {serviceList}
+      {stateList}
+    </tr>
+  );
+};
+
+export default function NmapList() {
   const { db_name } = useParams();
   const [nmapList, setNmapList] = useState([]);
 
@@ -22,29 +54,52 @@ const NmapList = () => {
     getNmapList();
   }, [db_name]);
 
+  function nmapListTable() {
+    const header = nmapList.length > 0 ? (
+      <>
+        <th>Domain</th>
+        {Object.keys(nmapList[0].scan).map((port) => (
+          <th key={port}>{port}</th>
+        ))}
+        {Object.keys(nmapList[0].scan).map((port) => (
+          <th key={`${port}_service`}>Service</th>
+        ))}
+        {Object.keys(nmapList[0].scan).map((port) => (
+          <th key={`${port}_state`}>State</th>
+        ))}
+      </>
+    ) : null;
+
+    const rows = nmapList.map((nmap) => {
+      return (
+        <Nmap
+          nmap={nmap}
+          key={nmap._id}
+        />
+      );
+    });
+
+    return (
+      <>
+        <thead>
+          <tr>
+            {header}
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </>
+    );
+  }
+
   return (
     <div>
       <h3>Nmap List</h3>
       <table className="table table-striped" style={{ marginTop: 20 }}>
-        <thead>
-          <tr>
-            <th>Host</th>
-            <th>Ports</th>
-            <th>Timestamp</th>
-          </tr>
-        </thead>
-        <tbody>
-          {nmapList.map((nmap) => (
-            <tr key={nmap._id}>
-              <td>{nmap.host}</td>
-              <td>{nmap.ports.join(", ")}</td>
-              <td>{nmap.timestamp}</td>
-            </tr>
-          ))}
-        </tbody>
+        {nmapListTable()}
       </table>
     </div>
   );
-};
+}
+
 
 export default NmapList;
