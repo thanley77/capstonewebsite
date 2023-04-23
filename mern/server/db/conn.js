@@ -8,14 +8,16 @@ const client = new MongoClient(Db, {
 var _db;
 
 module.exports = {
-  connectToServer: function (dbName, callback) {
+  connectToServer: function (callback) {
     client.connect(function (err, db) {
-      if (db) {
-        _db = db.db(dbName);
-        console.log(`Successfully connected to MongoDB database ${dbName}.`);
+      // Verify we got a good "db" object
+      if (db)
+      {
+        _db = db.db("pentests_ninjakiwi");
+        console.log("Successfully connected to MongoDB."); 
       }
       return callback(err);
-    });
+         });
   },
 
   getDb: function () {
