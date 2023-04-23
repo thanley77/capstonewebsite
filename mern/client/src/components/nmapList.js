@@ -100,6 +100,3 @@ export default function NmapList() {
     </div>
   );
 }
-
-
-export default NmapList;
