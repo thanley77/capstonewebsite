@@ -18,7 +18,7 @@ export default function HttpxList() {
 
   useEffect(() => {
     async function getHttpxList() {
-      const response = await fetch(/pentests_hyatt/httpx);
+      const response = await fetch(`/pentests_hyatt/httpx`);
 
       if (!response.ok) {
         const message = An error occurred: ${response.statusText};
