@@ -3,9 +3,8 @@ const recordRoutes = express.Router();
 const dbo = require("../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
-recordRoutes.route("/:db_name/httpx").get(function (req, res) {
-  let dbName = req.params.db_name;
-  dbo.connectToServer(dbName, function (err) {
+recordRoutes.route("/pentests_hyatt/httpx").get(function (req, res) {
+  dbo.connectToServer("pentests_hyatt", function (err) {
     if (err) throw err;
 
     let db_connect = dbo.getDb();
@@ -19,14 +18,13 @@ recordRoutes.route("/:db_name/httpx").get(function (req, res) {
   });
 });
 
-recordRoutes.route("/:db_name/nmap").get(function (req, res) {
-  let dbName = req.params.db_name;
-  dbo.connectToServer(dbName, function (err) {
+recordRoutes.route("/pentests_ninjakiwi/httpx").get(function (req, res) {
+  dbo.connectToServer("pentests_ninjakiwi", function (err) {
     if (err) throw err;
 
     let db_connect = dbo.getDb();
     db_connect
-      .collection("nmap")
+      .collection("httpx")
       .find({})
       .toArray(function (err, result) {
         if (err) throw err;
@@ -35,5 +33,5 @@ recordRoutes.route("/:db_name/nmap").get(function (req, res) {
   });
 });
 
-
 module.exports = recordRoutes;
+
