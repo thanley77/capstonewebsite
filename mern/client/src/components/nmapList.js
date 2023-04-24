@@ -3,16 +3,16 @@ import { useParams } from "react-router-dom";
 
 const Port = (props) => (
   <tr>
-    <td>{props.port.port_number}</td>
-    <td>{props.port.state}</td>
-    <td>{props.port.protocol}</td>
-    <td>{props.port.service}</td>
+    <td>{props.portNumber}</td>
+    <td>{props.state}</td>
+    <td>{props.protocol}</td>
+    <td>{props.service}</td>
   </tr>
 );
 
 const Nmap = (props) => (
   <tr>
-    <td>{props.nmap._id}</td>
+    <td>{props._id}</td>
     <td>
       <table>
         <thead>
@@ -24,8 +24,17 @@ const Nmap = (props) => (
           </tr>
         </thead>
         <tbody>
-          {props.nmap.scan.map((port) => {
-            return <Port port={port} key={port.port_number} />;
+          {Object.keys(props.scan).map((portNumber) => {
+            const port = props.scan[portNumber];
+            return (
+              <Port
+                portNumber={portNumber}
+                state={port.State}
+                protocol={port.Protocol}
+                service={port.Service}
+                key={portNumber}
+              />
+            );
           })}
         </tbody>
       </table>
@@ -53,7 +62,7 @@ const NmapList = () => {
 
   function nmapListTable() {
     return nmapList.map((nmap) => {
-      return <Nmap nmap={nmap} key={nmap._id} />;
+      return <Nmap {...nmap} key={nmap._id} />;
     });
   }
 
@@ -74,4 +83,5 @@ const NmapList = () => {
 };
 
 export default NmapList;
+
 
