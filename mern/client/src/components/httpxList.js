@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
+
 const Httpx = (props) => (
   <tr>
     <td>{props.httpx.input}</td>
@@ -13,15 +14,34 @@ const Httpx = (props) => (
     <td>{props.httpx.status_code}</td>
     <td>{props.httpx.content_length}</td>
     <td>{props.httpx.final_url}</td>
-
+    <td>
+      {props.httpx.tech.length > 0 &&
+        <table>
+          <thead>
+            <tr>
+              <th>Technology</th>
+            </tr>
+          </thead>
+          <tbody>
+            {props.httpx.tech.map((tech, index) => (
+              <tr key={index}>
+                <td>{tech}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      }
+    </td>
     <td>
       <a className="btn btn-link" href={props.httpx.url} target="_blank" rel="noopener noreferrer">View</a>
     </td>
   </tr>
 );
+
 export default function HttpxList() {
   const { db_name } = useParams();
   const [httpxList, setHttpxList] = useState([]);
+
   useEffect(() => {
     async function getHttpxList() {
       const response = await fetch(`/${db_name}/httpx`);
@@ -35,6 +55,7 @@ export default function HttpxList() {
     }
     getHttpxList();
   }, [db_name]);
+
   function httpxListTable() {
     return httpxList.map((httpx) => {
       return (
@@ -63,6 +84,7 @@ export default function HttpxList() {
             <th>StatusCode</th>
             <th>ContentLength</th>
             <th>FinalURL</th>
+            <th>Tech</th>
           </tr>
         </thead>
         <tbody>{httpxListTable()}</tbody>
