@@ -55,10 +55,13 @@ export default function HttpxList() {
             <th>Domain</th>
             <th>Host</th>
             <th>Location</th>
+            <th>Title</th>
             <th>Scheme</th>
+            <th>ContentType</th>
+            <th>Method</th>
             <th>Webserver</th>
             <th>StatusCode</th>
-            <th>Action</th>
+            <th>ContentLength</th>
             <th>FinalURL</th>
           </tr>
         </thead>
