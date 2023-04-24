@@ -14,24 +14,7 @@ const Httpx = (props) => (
     <td>{props.httpx.status_code}</td>
     <td>{props.httpx.content_length}</td>
     <td>{props.httpx.final_url}</td>
-    <td>
-      {props.httpx.tech.length > 0 &&
-        <table>
-          <thead>
-            <tr>
-              <th>Technology</th>
-            </tr>
-          </thead>
-          <tbody>
-            {props.httpx.tech.map((tech, index) => (
-              <tr key={index}>
-                <td>{tech}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      }
-    </td>
+    <td>{props.httpx.tech.join(", ")}</td>
     <td>
       <a className="btn btn-link" href={props.httpx.url} target="_blank" rel="noopener noreferrer">View</a>
     </td>
