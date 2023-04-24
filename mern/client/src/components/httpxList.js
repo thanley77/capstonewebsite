@@ -8,7 +8,9 @@ const Httpx = (props) => (
     <td>{props.httpx.location}</td>
     <td>{props.httpx.scheme}</td>
     <td>{props.httpx.webserver}</td>
-    <td>{props.httpx.status_code}</td>
+    {props.httpx.ports.map((port, index) => (
+      <td key={index}>{port.number} - {port.protocol} - {port.state} - {port.service}</td>
+    ))}
     <td>{props.httpx.final_url}</td>
     
     <td>
@@ -41,10 +43,29 @@ export default function HttpxList() {
   function httpxListTable() {
     return httpxList.map((httpx) => {
       return (
-        <Httpx
-          httpx={httpx}
-          key={httpx._id}
-        />
+        <div key={httpx._id}>
+          <h4>{httpx._id}</h4>
+          <table className="table table-striped" style={{ marginTop: 20 }}>
+            <thead>
+              <tr>
+                <th>Domain</th>
+                <th>Host</th>
+                <th>Location</th>
+                <th>Scheme</th>
+                <th>Webserver</th>
+                <th>Ports</th>
+                <th>Final URL</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <Httpx
+                httpx={httpx}
+                key={httpx._id}
+              />
+            </tbody>
+          </table>
+        </div>
       );
     });
   }
@@ -52,21 +73,7 @@ export default function HttpxList() {
   return (
     <div>
       <h3>HTTPX List</h3>
-      <table className="table table-striped" style={{ marginTop: 20 }}>
-        <thead>
-          <tr>
-            <th>Domain</th>
-            <th>Host</th>
-            <th>Location</th>
-            <th>Scheme</th>
-            <th>Webserver</th>
-            <th>StatusCode</th>
-            <th>Action</th>
-            <th>FinalURL</th>
-          </tr>
-        </thead>
-        <tbody>{httpxListTable()}</tbody>
-      </table>
+      {httpxListTable()}
     </div>
   );
 }
