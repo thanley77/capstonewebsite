@@ -56,13 +56,13 @@ export default function Navbar() {
             </li>
             {/* Additional links */}
             <li className="nav-item">
-              <NavLink className="nav-link" to="/record/pentest_hyatt">
-                records in hyatt
+              <NavLink className="nav-link" to="/pentests_hyatt/httpx">
+                Hyatt HTTPX Scan
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/record/pentest_ninjakiwi">
-                records in ninjakiwi
+              <NavLink className="nav-link" to="/pentests_hyatt/nmap">
+                Hyatt NMAP Scan
               </NavLink>
             </li>
             {/* Add more links as needed */}
