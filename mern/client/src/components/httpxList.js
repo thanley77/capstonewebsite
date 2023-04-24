@@ -14,9 +14,10 @@ const Httpx = (props) => (
     <td>{props.httpx.status_code}</td>
     <td>{props.httpx.content_length}</td>
     <td>{props.httpx.final_url}</td>
+    <td>{props.httpx.cname.join(", ")}</td>
     <td>{props.httpx.tech.join(", ")}</td>
     <td>
-      <a className="btn btn-link" href={props.httpx.url} target="_blank" rel="noopener noreferrer">View</a>
+      <a className="btn btn-link" href={props.httpx.url} target="_blank" rel="noopener noreferrer">URL</a>
     </td>
   </tr>
 );
@@ -67,6 +68,7 @@ export default function HttpxList() {
             <th>StatusCode</th>
             <th>ContentLength</th>
             <th>FinalURL</th>
+            <th>CNames</th>
             <th>Tech</th>
           </tr>
         </thead>
