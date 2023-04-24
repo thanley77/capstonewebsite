@@ -5,9 +5,13 @@ const Httpx = (props) => (
     <td>{props.httpx.input}</td>
     <td>{props.httpx.host}</td>
     <td>{props.httpx.location}</td>
+    <td>{props.httpx.title}</td>
     <td>{props.httpx.scheme}</td>
+    <td>{props.httpx.content_type}</td>
+    <td>{props.httpx.method}</td>
     <td>{props.httpx.webserver}</td>
     <td>{props.httpx.status_code}</td>
+    <td>{props.httpx.content_length}</td>
     <td>{props.httpx.final_url}</td>
 
     <td>
