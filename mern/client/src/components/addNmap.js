@@ -139,3 +139,5 @@ const AddNmap = () => {
     </div>
   );
 }
+
+export default AddNmap;
