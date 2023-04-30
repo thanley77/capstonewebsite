@@ -10,7 +10,6 @@ import Edit from "./components/edit";
 import Create from "./components/create";
 import HttpxList from "./components/httpxList";
 import NmapList from "./components/nmapList";
-import ImportNmapButtom from "./components/importNmapButton";
 
 const App = () => {
   return (
@@ -23,7 +22,6 @@ const App = () => {
           <Route path="/list" element={<Create />} />
           <Route path="/:db_name/httpx" element={<HttpxList />} />
           <Route path="/:db_name/nmap" element={<NmapList />} />
-          <Route path="/import-nmap" element={<ImportNmapButton />} />
         </Routes>
       </div>
     </div>
