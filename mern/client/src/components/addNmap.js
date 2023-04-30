@@ -137,4 +137,5 @@ const AddNmap = () => {
         <button type="submit">Save</button>
       </form>
     </div>
- 
+  );
+}
