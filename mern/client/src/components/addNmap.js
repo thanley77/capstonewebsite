@@ -47,7 +47,7 @@ const AddNmap = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = await fetch(`/${db_name}/nmap`, {
+    const response = await fetch("/:db_name/nmap"), {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
