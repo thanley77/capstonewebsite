@@ -66,14 +66,9 @@ const NmapList = () => {
     });
   }
 
-  function addEntry() {
-    setNmapList([...nmapList, { _id: Date.now(), scan: {} }]);
-  }
-
   return (
     <div>
       <h3>Nmap List</h3>
-      <button onClick={addEntry}>Add New Entry</button>
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
           <tr>
@@ -88,4 +83,5 @@ const NmapList = () => {
 };
 
 export default NmapList;
+
 
