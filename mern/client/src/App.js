@@ -11,7 +11,7 @@ import Create from "./components/create";
 import HttpxList from "./components/httpxList";
 import NmapList from "./components/nmapList";
 import CreateNmap from "./components/nmapCreate";
-
+import CreateHttpx from "./components/createHttpx";
 const App = () => {
   return (
     <div>
@@ -24,6 +24,7 @@ const App = () => {
           <Route path="/:db_name/httpx" element={<HttpxList />} />
           <Route path="/:db_name/nmap" element={<NmapList />} />
           <Route path="/nmapadd" element={<CreateNmap />} />
+          <Route path="/:db_name/httpx/create" element={<CreateNmap />} />
         </Routes>
       </div>
     </div>
