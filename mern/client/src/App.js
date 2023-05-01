@@ -24,7 +24,7 @@ const App = () => {
           <Route path="/:db_name/httpx" element={<HttpxList />} />
           <Route path="/:db_name/nmap" element={<NmapList />} />
           <Route path="/nmapadd" element={<CreateNmap />} />
-          <Route path="/httpx" element={<HttpxPage />} />
+          <Route path="/:db_name/httpx/create" element={<HttpxPage />} />
         </Routes>
       </div>
     </div>
