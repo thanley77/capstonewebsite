@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 function CreateHttpx() {
   const [input, setInput] = useState('');
@@ -26,20 +27,15 @@ function CreateHttpx() {
       method,
       webserver,
   };
-    try {
-      await fetch(`/${db_name}/httpx/create`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newHttpx),
-    });
+    
+  try {
+    await axios.post(`/${db_name}/httpx/create`, newHttpx);
     navigate(-1); // Go back to the previous page
-  } catch (err) {
-    console.error(err);
-    window.alert(`Error creating new HTTPX: ${err.message}`);
-  }
-};
+    } catch (err) {
+      console.error(err);
+      window.alert(`Error creating new HTTPX: ${err.message}`);
+    }
+  };
 
   return (
     <div>
