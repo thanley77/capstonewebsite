@@ -57,18 +57,18 @@ export default function Navbar() {
             </li>
             {/* Additional links */}
             <li className="nav-item">
-              <NavLink className="nav-link" to="/nmapadd">
-                Create NMAP
+              <NavLink className="nav-link" to="/pentests_hyatt/httpx/create">
+                Add HTTPX 
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/pentests_hyatt/httpx">
-                Hyatt HTTPX Scan
+                HTTPX Scan
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/pentests_demo/httpx/create">
-                Add HTTPX
+              <NavLink className="nav-link" to="/pentests_demo/nmap">
+                NMAP Scan
               </NavLink>
             </li>
             {/* Add more links as needed */}
