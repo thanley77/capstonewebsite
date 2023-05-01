@@ -22,12 +22,14 @@ jobs:
       - name: Install npm packages - server
         run: |
           cd mern/server
+          npm install axios
           npm install       
       
       - name: Install npm packages, build then copy files - client
         run: |
           cd mern/client
           npm install
+          npm install axios
           npm run build
           cp -r ./build ../server/public
             
