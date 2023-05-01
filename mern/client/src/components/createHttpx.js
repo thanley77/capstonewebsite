@@ -29,8 +29,19 @@ function CreateHttpx() {
   };
     
   try {
-    await axios.post(`/${db_name}/httpx/create`, newHttpx);
-    navigate(-1); // Go back to the previous page
+      const response = await fetch(`/${db_name}/httpx/create`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newHttpx),
+      });
+      if (response.ok) {
+        navigate(-1); // Go back to the previous page
+      } else {
+        const error = await response.json();
+        window.alert(`Error creating new HTTPX: ${error.message}`);
+      }
     } catch (err) {
       console.error(err);
       window.alert(`Error creating new HTTPX: ${err.message}`);
