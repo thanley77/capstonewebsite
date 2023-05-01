@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
-function CreateHttpx(props) {
+function CreateHttpx() {
   const [input, setInput] = useState('');
   const [host, setHost] = useState('');
   const [location, setLocation] = useState('');
@@ -8,6 +10,9 @@ function CreateHttpx(props) {
   const [scheme, setScheme] = useState('');
   const [method, setMethod] = useState('');
   const [webserver, setWebserver] = useState('');
+
+  const { db_name } = useParams();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,35 +25,28 @@ function CreateHttpx(props) {
       scheme,
       method,
       webserver,
-    };
-
+  };
     try {
-      const response = await fetch(`/${props.db_name}/httpx/create`, {
+      await fetch(`/${db_name}/httpx/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newHttpx),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        props.addHttpx(data);
-      } else {
-        throw new Error('Unable to create new HTTPX');
-      }
-    } catch (err) {
-      console.error(err);
-      window.alert(`Error creating new HTTPX: ${err.message}`);
-    }
-  };
+      },
+      body: JSON.stringify(newHttpx),
+    });
+    navigate(-1); // Go back to the previous page
+  } catch (err) {
+    console.error(err);
+    window.alert(`Error creating new HTTPX: ${err.message}`);
+  }
+};
 
   return (
     <div>
       <h3>Create new HTTPX</h3>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="input">Input:</label>
+          <label htmlFor="input">Input</label>
           <input
             type="text"
             className="form-control"
@@ -58,7 +56,7 @@ function CreateHttpx(props) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="host">Host:</label>
+          <label htmlFor="host">Host</label>
           <input
             type="text"
             className="form-control"
@@ -68,7 +66,7 @@ function CreateHttpx(props) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="location">Location:</label>
+          <label htmlFor="location">Location</label>
           <input
             type="text"
             className="form-control"
@@ -78,7 +76,7 @@ function CreateHttpx(props) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="title">Title:</label>
+          <label htmlFor="title">Title</label>
           <input
             type="text"
             className="form-control"
@@ -88,7 +86,7 @@ function CreateHttpx(props) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="scheme">Scheme:</label>
+          <label htmlFor="scheme">Scheme</label>
           <input
             type="text"
             className="form-control"
@@ -98,32 +96,31 @@ function CreateHttpx(props) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="method">Method:</label>
+          <label htmlFor="method">Method</label>
           <input
             type="text"
             className="form-control"
             id="method"
             value={method}
             onChange={(e) => setMethod(e.target.value)}
-          />
+        />
         </div>
         <div className="form-group">
-          <label htmlFor="webserver">Webserver:</label>
+          <label htmlFor="webserver">Webserver</label>
           <input
             type="text"
             className="form-control"
             id="webserver"
             value={webserver}
             onChange={(e) => setWebserver(e.target.value)}
-          />
+        />
         </div>
-        <button type="submit" className="btn btn-primary">
-          Create HTTPX
-        </button>
-      </form>
-    </div>
-  );
-}
+      <button type="submit" className="btn btn-primary">
+          Create
+      </button>
+  </form>
+</div>
+);
+};
 
 export default CreateHttpx;
-
