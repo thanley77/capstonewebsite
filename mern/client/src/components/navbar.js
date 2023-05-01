@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
-import createHttpx from './createHttpx.js';
 
 export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -26,13 +25,6 @@ export default function Navbar() {
     setSearchQuery(event.target.value);
   };
   
-  const handleCreateHttpx = () => {
-    createHttpx().then((response) => {
-      console.log(response);
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
 
   return (
     <div>
@@ -80,11 +72,6 @@ export default function Navbar() {
               </NavLink>
             </li>
             {/* Add more links as needed */}
-            <li className="nav-item">
-              <button className="btn nav-link" onClick={handleCreateHttpx}>
-                Create HTTPX
-              </button>
-            </li>
             {/* Search bar */}
             <li className="nav-item">
               <form className="form-inline my-2 my-lg-0" onSubmit={handleSearchSubmit}>
