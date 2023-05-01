@@ -20,7 +20,7 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<RecordList />} />
           <Route path="/edit/:id" element={<Edit />} />
-          <Route path="/create" element={<Create />} />
+          <Route path="/list" element={<Create />} />
           <Route path="/:db_name/httpx" element={<HttpxList />} />
           <Route path="/:db_name/nmap" element={<NmapList />} />
           <Route path="/nmapadd" element={<CreateNmap />} />
