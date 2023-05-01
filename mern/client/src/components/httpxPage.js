@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateHttpx from './httpxCreate';
+import CreateHttpx from './createHttpx';
 
 function HttpxPage() {
   return (
