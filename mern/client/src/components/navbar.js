@@ -72,6 +72,11 @@ export default function Navbar() {
               </NavLink>
             </li>
             {/* Add more links as needed */}
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/pentests_hyatt/nmap/create">
+                Add Nmap
+              </NavLink>
+            </li>
             {/* Search bar */}
             <li className="nav-item">
               <form className="form-inline my-2 my-lg-0" onSubmit={handleSearchSubmit}>
