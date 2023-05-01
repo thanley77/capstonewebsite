@@ -80,9 +80,8 @@ recordRoutes.route("/record/add").post(function (req, response) {
 });
 
 // This section will help you update a record by id for a specific database.
-recordRoutes.route("/update/:db_name/:id").post(function (req, response) {
-  let dbName = req.params.db_name;
-  let db_connect = dbo.getDb(dbName);
+recordRoutes.route("/update/:id").post(function (req, response) {
+  let db_connect = dbo.getDb("pentests_ninjakiwi");
   let myquery = { _id: ObjectId(req.params.id) };
   let newvalues = {
     $set: {
