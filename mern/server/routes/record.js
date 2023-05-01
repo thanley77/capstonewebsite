@@ -101,9 +101,8 @@ recordRoutes.route("/update/:db_name/:id").post(function (req, response) {
 });
 
 // This section will help you delete a record for a specific database.
-recordRoutes.route("/:db_name/:id").delete((req, response) => {
-  let dbName = req.params.db_name;
-  let db_connect = dbo.getDb(dbName);
+recordRoutes.route("/:id").delete((req, response) => {
+  let db_connect = dbo.getDb("pentests_ninjakiwi");
   let myquery = { _id: ObjectId(req.params.id) };
   db_connect.collection("records").deleteOne(myquery, function (err, obj) {
     if (err) throw err;
