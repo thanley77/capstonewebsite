@@ -3,33 +3,6 @@ const recordRoutes = express.Router();
 const dbo = require("../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
-recordRoutes.route("/:db_name/httpx/create").post(function (req, res) {
-  let dbName = req.params.db_name;
-  let db_connect = dbo.getDb(dbName);
-
-  let myobj = {
-    input: req.body.input,
-    host: req.body.host,
-    location: req.body.location,
-    title: req.body.title,
-    scheme: req.body.scheme,
-    contentType: req.body.contentType,
-    method: req.body.method,
-    webserver: req.body.webserver,
-    statusCode: req.body.statusCode,
-    contentLength: req.body.contentLength,
-    finalUrl: req.body.finalUrl,
-    tech: req.body.tech,
-  };
-
-  db_connect.collection("httpx").insertOne(myobj, function (err, res) {
-    if (err) throw err;
-    console.log("1 HTTPX record inserted");
-    res.json(res);
-  });
-});
-
-
 // This section will help you get a list of all the records for a specific database.
 recordRoutes.route("/:db_name/httpx").get(function (req, res) {
   let dbName = req.params.db_name;
