@@ -40,8 +40,9 @@ recordRoutes.route("/:db_name/hosts").get(function (req, res) {
     });
 });
 
-recordRoutes.route("/record").get(function (req, res) {
-  let db_connect = dbo.getDb("employees");
+recordRoutes.route("/record:db_name").get(function (req, res) {
+  let dbName = req.params.db_name;
+  let db_connect = dbo.getDb(dbName);
   db_connect
     .collection("records")
     .find({})
@@ -65,8 +66,9 @@ recordRoutes.route("/record/:db_name/:id").get(function (req, res) {
 });
 
 // This section will help you create a new record for a specific database.
-recordRoutes.route("/record/add").post(function (req, response) {
-  let db_connect = dbo.getDb("employees");
+recordRoutes.route("/record/add/:db_name").post(function (req, response) {
+  let dbName = req.params.db_name;
+  let db_connect = dbo.getDb(dbName);
   let myobj = {
     name: req.body.name,
     position: req.body.position,
