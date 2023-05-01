@@ -17,6 +17,7 @@ function CreateHttpx() {
   const [tech, setTech] = useState('');
 
   const { db_name } = useParams();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,7 +39,7 @@ function CreateHttpx() {
 
     try {
       await axios.post(`/${db_name}/httpx`, newHttpx);
-      window.location.reload();
+      navigate(-1); // Go back to the previous page
     } catch (err) {
       console.error(err);
       window.alert(`Error creating new HTTPX: ${err.message}`);
@@ -107,7 +108,7 @@ function CreateHttpx() {
             id="contentType"
             value={contentType}
             onChange={(e) => setContentType(e.target.value)}
-          />
+        />
         </div>
         <div className="form-group">
           <label htmlFor="method">Method</label>
@@ -117,7 +118,7 @@ function CreateHttpx() {
             id="method"
             value={method}
             onChange={(e) => setMethod(e.target.value)}
-          />
+        />
         </div>
         <div className="form-group">
           <label htmlFor="webserver">Webserver</label>
@@ -127,7 +128,7 @@ function CreateHttpx() {
             id="webserver"
             value={webserver}
             onChange={(e) => setWebserver(e.target.value)}
-          />
+        />
         </div>
         <div className="form-group">
           <label htmlFor="statusCode">Status Code</label>
@@ -137,7 +138,7 @@ function CreateHttpx() {
             id="statusCode"
             value={statusCode}
             onChange={(e) => setStatusCode(e.target.value)}
-          />
+        />
         </div>
         <div className="form-group">
           <label htmlFor="contentLength">Content Length</label>
@@ -147,7 +148,7 @@ function CreateHttpx() {
             id="contentLength"
             value={contentLength}
             onChange={(e) => setContentLength(e.target.value)}
-          />
+        />
         </div>
         <div className="form-group">
           <label htmlFor="finalUrl">Final URL</label>
@@ -157,27 +158,24 @@ function CreateHttpx() {
             id="finalUrl"
             value={finalUrl}
             onChange={(e) => setFinalUrl(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="tech">Tech</label>
-          <input
-            type="text"
-            className="form-control"
-            id="tech"
-            value={tech}
-            onChange={(e) => setTech(e.target.value)}
-          />
-          <small className="form-text text-muted">
-            Separate each technology with a comma.
-          </small>
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Create HTTPX
-        </button>
-      </form>
-    </div>
-  );
-}
+       />
+       </div>
+       <div className="form-group">
+         <label htmlFor="tech">Tech</label>
+         <input
+           type="text"
+           className="form-control"
+           id="tech"
+           value={tech}
+           onChange={(e) => setTech(e.target.value)}
+      />
+      </div>
+      <button type="submit" className="btn btn-primary">
+          Create
+      </button>
+  </form>
+</div>
+);
+};
 
 export default CreateHttpx;
