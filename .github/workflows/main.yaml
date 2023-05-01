@@ -42,6 +42,9 @@ jobs:
         uses: bahmutov/npm-install@v1
         with:
           working-directory: mern/client
+      
+      - name: Install axios
+        run: npm install axios
 
       - name: Start server in the background
         env: 
