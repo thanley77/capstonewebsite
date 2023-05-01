@@ -67,7 +67,7 @@ export default function Navbar() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/pentests_demo/nmap">
+              <NavLink className="nav-link" to="/pentests_hyatt/nmap">
                 NMAP Scan
               </NavLink>
             </li>
