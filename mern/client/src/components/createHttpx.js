@@ -15,7 +15,6 @@ function CreateHttpx() {
   const [statusCode, setStatusCode] = useState('');
   const [contentLength, setContentLength] = useState('');
   const [finalUrl, setFinalUrl] = useState('');
-  const [tech, setTech] = useState('');
 
   const { db_name } = useParams();
   const navigate = useNavigate();
@@ -35,7 +34,6 @@ function CreateHttpx() {
       status_code: statusCode,
       content_length: contentLength,
       final_url: finalUrl,
-      tech: tech.split(','),
     };
 
     try {
@@ -161,16 +159,6 @@ function CreateHttpx() {
             onChange={(e) => setFinalUrl(e.target.value)}
        />
        </div>
-       <div className="form-group">
-         <label htmlFor="tech">Tech</label>
-         <input
-           type="text"
-           className="form-control"
-           id="tech"
-           value={tech}
-           onChange={(e) => setTech(e.target.value)}
-      />
-      </div>
       <button type="submit" className="btn btn-primary">
           Create
       </button>
