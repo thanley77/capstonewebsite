@@ -57,8 +57,8 @@ function CreateNmap() {
           <input
             type="text"
             className="form-control"
-            id="arguments"
-            value={arguments}
+            id="nmapArguments"
+            value={nmapArguments}
             onChange={(e) => setNmapArguments(e.target.value)}
           />
         </div>
