@@ -9,12 +9,8 @@ function CreateHttpx() {
   const [location, setLocation] = useState('');
   const [title, setTitle] = useState('');
   const [scheme, setScheme] = useState('');
-  const [contentType, setContentType] = useState('');
   const [method, setMethod] = useState('');
   const [webserver, setWebserver] = useState('');
-  const [statusCode, setStatusCode] = useState('');
-  const [contentLength, setContentLength] = useState('');
-  const [finalUrl, setFinalUrl] = useState('');
 
   const { db_name } = useParams();
   const navigate = useNavigate();
@@ -28,12 +24,8 @@ function CreateHttpx() {
       location,
       title,
       scheme,
-      content_type: contentType,
       method,
       webserver,
-      status_code: statusCode,
-      content_length: contentLength,
-      final_url: finalUrl,
     };
 
     try {
@@ -100,16 +92,6 @@ function CreateHttpx() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="contentType">Content Type</label>
-          <input
-            type="text"
-            className="form-control"
-            id="contentType"
-            value={contentType}
-            onChange={(e) => setContentType(e.target.value)}
-        />
-        </div>
-        <div className="form-group">
           <label htmlFor="method">Method</label>
           <input
             type="text"
@@ -129,36 +111,6 @@ function CreateHttpx() {
             onChange={(e) => setWebserver(e.target.value)}
         />
         </div>
-        <div className="form-group">
-          <label htmlFor="statusCode">Status Code</label>
-          <input
-            type="text"
-            className="form-control"
-            id="statusCode"
-            value={statusCode}
-            onChange={(e) => setStatusCode(e.target.value)}
-        />
-        </div>
-        <div className="form-group">
-          <label htmlFor="contentLength">Content Length</label>
-          <input
-            type="text"
-            className="form-control"
-            id="contentLength"
-            value={contentLength}
-            onChange={(e) => setContentLength(e.target.value)}
-        />
-        </div>
-        <div className="form-group">
-          <label htmlFor="finalUrl">Final URL</label>
-          <input
-            type="text"
-            className="form-control"
-            id="finalUrl"
-            value={finalUrl}
-            onChange={(e) => setFinalUrl(e.target.value)}
-       />
-       </div>
       <button type="submit" className="btn btn-primary">
           Create
       </button>
