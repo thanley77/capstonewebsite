@@ -8,13 +8,8 @@ const Httpx = (props) => (
     <td>{props.httpx.location}</td>
     <td>{props.httpx.title}</td>
     <td>{props.httpx.scheme}</td>
-    <td>{props.httpx.content_type}</td>
     <td>{props.httpx.method}</td>
     <td>{props.httpx.webserver}</td>
-    <td>{props.httpx.status_code}</td>
-    <td>{props.httpx.content_length}</td>
-    <td>{props.httpx.final_url}</td>
-    <td>{props.httpx.tech.join(", ")}</td>
     <td>
       <a className="btn btn-link" href={props.httpx.url} target="_blank" rel="noopener noreferrer">URL</a>
     </td>
@@ -61,13 +56,8 @@ export default function HttpxList() {
             <th>Location</th>
             <th>Title</th>
             <th>Scheme</th>
-            <th>ContentType</th>
             <th>Method</th>
             <th>Webserver</th>
-            <th>StatusCode</th>
-            <th>ContentLength</th>
-            <th>FinalURL</th>
-            <th>Tech</th>
           </tr>
         </thead>
         <tbody>{httpxListTable()}</tbody>
