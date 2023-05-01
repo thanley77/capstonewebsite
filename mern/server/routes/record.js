@@ -16,6 +16,24 @@ recordRoutes.route("/:db_name/httpx").get(function (req, res) {
     });
 });
 
+recordRoutes.route("/:db_name/httpx/create").post(function (req, res) {
+  let dbName = req.params.db_name;
+  let db_connect = dbo.getDb(dbName);
+  let httpx = {
+    input: req.body.input,
+    host: req.body.host,
+    location: req.body.location,
+    title: req.body.title,
+    scheme: req.body.scheme,
+    method: req.body.method,
+    webserver: req.body.webserver,
+  };
+  db_connect.collection("httpx").insertOne(httpx, function (err, result) {
+    if (err) throw err;
+    res.status(200).json({ message: "HTTPX record created successfully" });
+  });
+});
+
 recordRoutes.route("/:db_name/nmap").get(function (req, res) {
   let dbName = req.params.db_name;
   let db_connect = dbo.getDb(dbName);
