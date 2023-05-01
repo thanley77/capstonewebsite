@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 function CreateNmap() {
   const [target, setTarget] = useState('');
-  const [arguments, setArguments] = useState('');
+  const [nmapArguments, setNmapArguments] = useState('');
   const [scan, setScan] = useState('');
   const { db_name } = useParams();
   const navigate = useNavigate();
@@ -59,7 +59,7 @@ function CreateNmap() {
             className="form-control"
             id="arguments"
             value={arguments}
-            onChange={(e) => setArguments(e.target.value)}
+            onChange={(e) => setNmapArguments(e.target.value)}
           />
         </div>
         <div className="form-group">
