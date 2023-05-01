@@ -39,7 +39,7 @@ function CreateHttpx() {
     };
 
     try {
-      await axios.post(`/${db_name}/httpx`, newHttpx);
+      await axios.post(`/${db_name}/httpx/create`, newHttpx);
       navigate(-1); // Go back to the previous page
     } catch (err) {
       console.error(err);
