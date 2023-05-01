@@ -40,7 +40,7 @@ recordRoutes.route("/:db_name/hosts").get(function (req, res) {
     });
 });
 
-recordRoutes.route("/record:db_name").get(function (req, res) {
+recordRoutes.route("/record/:db_name").get(function (req, res) {
   let dbName = req.params.db_name;
   let db_connect = dbo.getDb(dbName);
   db_connect
