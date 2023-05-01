@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import HttpxList from './httpxList';
-import CreateHttpx from './CreateHttpx';
+import CreateHttpx from './createHttpx';
 
 function HttpxPage() {
   const { db_name } = useParams();
