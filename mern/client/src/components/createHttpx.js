@@ -48,81 +48,82 @@ function CreateHttpx(props) {
       <h3>Create new HTTPX</h3>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-<label htmlFor="input">Input:</label>
-<input
-type="text"
-className="form-control"
-id="input"
-value={input}
-onChange={(e) => setInput(e.target.value)}
-/>
-</div>
-<div className="form-group">
-<label htmlFor="host">Host:</label>
-<input
-type="text"
-className="form-control"
-id="host"
-value={host}
-onChange={(e) => setHost(e.target.value)}
-/>
-</div>
-<div className="form-group">
-<label htmlFor="location">Location:</label>
-<input
-type="text"
-className="form-control"
-id="location"
-value={location}
-onChange={(e) => setLocation(e.target.value)}
-/>
-</div>
-<div className="form-group">
-<label htmlFor="title">Title:</label>
-<input
-type="text"
-className="form-control"
-id="title"
-value={title}
-onChange={(e) => setTitle(e.target.value)}
-/>
-</div>
-<div className="form-group">
-<label htmlFor="scheme">Scheme:</label>
-<input
-type="text"
-className="form-control"
-id="scheme"
-value={scheme}
-onChange={(e) => setScheme(e.target.value)}
-/>
-</div>
-<div className="form-group">
-<label htmlFor="method">Method:</label>
-<input
-type="text"
-className="form-control"
-id="method"
-value={method}
-onChange={(e) => setMethod(e.target.value)}
-/>
-</div>
-<div className="form-group">
-<label htmlFor="webserver">Webserver:</label>
-<input
-type="text"
-className="form-control"
-id="webserver"
-value={webserver}
-onChange={(e) => setWebserver(e.target.value)}
-/>
-</div>
-<button type="submit" className="btn btn-primary">
-Create HTTPX
-</button>
-</form>
-</div>
-);
+          <label htmlFor="input">Input:</label>
+          <input
+            type="text"
+            className="form-control"
+            id="input"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="host">Host:</label>
+          <input
+            type="text"
+            className="form-control"
+            id="host"
+            value={host}
+            onChange={(e) => setHost(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="location">Location:</label>
+          <input
+            type="text"
+            className="form-control"
+            id="location"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="title">Title:</label>
+          <input
+            type="text"
+            className="form-control"
+            id="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="scheme">Scheme:</label>
+          <input
+            type="text"
+            className="form-control"
+            id="scheme"
+            value={scheme}
+            onChange={(e) => setScheme(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="method">Method:</label>
+          <input
+            type="text"
+            className="form-control"
+            id="method"
+            value={method}
+            onChange={(e) => setMethod(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="webserver">Webserver:</label>
+          <input
+            type="text"
+            className="form-control"
+            id="webserver"
+            value={webserver}
+            onChange={(e) => setWebserver(e.target.value)}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Create HTTPX
+        </button>
+      </form>
+    </div>
+  );
 }
 
 export default CreateHttpx;
+
